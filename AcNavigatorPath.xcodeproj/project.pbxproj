@@ -1,0 +1,290 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A26291EF1C56FF2F00AAB6FA /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A26291EE1C56FF2F00AAB6FA /* AppKit.framework */; };
+		A26291F11C56FF2F00AAB6FA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A26291F01C56FF2F00AAB6FA /* Foundation.framework */; };
+		A26291F51C56FF2F00AAB6FA /* AcNavigatorPath.xcscheme in Resources */ = {isa = PBXBuildFile; fileRef = A26291F41C56FF2F00AAB6FA /* AcNavigatorPath.xcscheme */; };
+		A26291F81C56FF2F00AAB6FA /* AcNavigatorPath.m in Sources */ = {isa = PBXBuildFile; fileRef = A26291F71C56FF2F00AAB6FA /* AcNavigatorPath.m */; };
+		A26291FB1C56FF2F00AAB6FA /* NSObject_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = A26291FA1C56FF2F00AAB6FA /* NSObject_Extension.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A26291EB1C56FF2F00AAB6FA /* AcNavigatorPath.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AcNavigatorPath.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		A26291EE1C56FF2F00AAB6FA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		A26291F01C56FF2F00AAB6FA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		A26291F41C56FF2F00AAB6FA /* AcNavigatorPath.xcscheme */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = AcNavigatorPath.xcscheme; path = AcNavigatorPath.xcodeproj/xcshareddata/xcschemes/AcNavigatorPath.xcscheme; sourceTree = SOURCE_ROOT; };
+		A26291F61C56FF2F00AAB6FA /* AcNavigatorPath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AcNavigatorPath.h; sourceTree = "<group>"; };
+		A26291F71C56FF2F00AAB6FA /* AcNavigatorPath.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AcNavigatorPath.m; sourceTree = "<group>"; };
+		A26291F91C56FF2F00AAB6FA /* NSObject_Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSObject_Extension.h; sourceTree = "<group>"; };
+		A26291FA1C56FF2F00AAB6FA /* NSObject_Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSObject_Extension.m; sourceTree = "<group>"; };
+		A26291FC1C56FF2F00AAB6FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A26291E91C56FF2F00AAB6FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A26291EF1C56FF2F00AAB6FA /* AppKit.framework in Frameworks */,
+				A26291F11C56FF2F00AAB6FA /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A26291E21C56FF2F00AAB6FA = {
+			isa = PBXGroup;
+			children = (
+				A26291F21C56FF2F00AAB6FA /* AcNavigatorPath */,
+				A26291ED1C56FF2F00AAB6FA /* Frameworks */,
+				A26291EC1C56FF2F00AAB6FA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A26291EC1C56FF2F00AAB6FA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A26291EB1C56FF2F00AAB6FA /* AcNavigatorPath.xcplugin */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A26291ED1C56FF2F00AAB6FA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A26291EE1C56FF2F00AAB6FA /* AppKit.framework */,
+				A26291F01C56FF2F00AAB6FA /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A26291F21C56FF2F00AAB6FA /* AcNavigatorPath */ = {
+			isa = PBXGroup;
+			children = (
+				A26291F61C56FF2F00AAB6FA /* AcNavigatorPath.h */,
+				A26291F71C56FF2F00AAB6FA /* AcNavigatorPath.m */,
+				A26291F91C56FF2F00AAB6FA /* NSObject_Extension.h */,
+				A26291FA1C56FF2F00AAB6FA /* NSObject_Extension.m */,
+				A26291FC1C56FF2F00AAB6FA /* Info.plist */,
+				A26291F31C56FF2F00AAB6FA /* Supporting Files */,
+			);
+			path = AcNavigatorPath;
+			sourceTree = "<group>";
+		};
+		A26291F31C56FF2F00AAB6FA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A26291F41C56FF2F00AAB6FA /* AcNavigatorPath.xcscheme */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A26291EA1C56FF2F00AAB6FA /* AcNavigatorPath */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A26291FF1C56FF2F00AAB6FA /* Build configuration list for PBXNativeTarget "AcNavigatorPath" */;
+			buildPhases = (
+				A26291E71C56FF2F00AAB6FA /* Sources */,
+				A26291E81C56FF2F00AAB6FA /* Resources */,
+				A26291E91C56FF2F00AAB6FA /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AcNavigatorPath;
+			productName = AcNavigatorPath;
+			productReference = A26291EB1C56FF2F00AAB6FA /* AcNavigatorPath.xcplugin */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A26291E31C56FF2F00AAB6FA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = Ancc;
+				TargetAttributes = {
+					A26291EA1C56FF2F00AAB6FA = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = A26291E61C56FF2F00AAB6FA /* Build configuration list for PBXProject "AcNavigatorPath" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A26291E21C56FF2F00AAB6FA;
+			productRefGroup = A26291EC1C56FF2F00AAB6FA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A26291EA1C56FF2F00AAB6FA /* AcNavigatorPath */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A26291E81C56FF2F00AAB6FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A26291F51C56FF2F00AAB6FA /* AcNavigatorPath.xcscheme in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A26291E71C56FF2F00AAB6FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A26291F81C56FF2F00AAB6FA /* AcNavigatorPath.m in Sources */,
+				A26291FB1C56FF2F00AAB6FA /* NSObject_Extension.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A26291FD1C56FF2F00AAB6FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+			};
+			name = Debug;
+		};
+		A26291FE1C56FF2F00AAB6FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+			};
+			name = Release;
+		};
+		A26292001C56FF2F00AAB6FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(HOME)";
+				INFOPLIST_FILE = AcNavigatorPath/Info.plist;
+				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ancy.AcNavigatorPath;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xcplugin;
+			};
+			name = Debug;
+		};
+		A26292011C56FF2F00AAB6FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(HOME)";
+				INFOPLIST_FILE = AcNavigatorPath/Info.plist;
+				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ancy.AcNavigatorPath;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xcplugin;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A26291E61C56FF2F00AAB6FA /* Build configuration list for PBXProject "AcNavigatorPath" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A26291FD1C56FF2F00AAB6FA /* Debug */,
+				A26291FE1C56FF2F00AAB6FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A26291FF1C56FF2F00AAB6FA /* Build configuration list for PBXNativeTarget "AcNavigatorPath" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A26292001C56FF2F00AAB6FA /* Debug */,
+				A26292011C56FF2F00AAB6FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A26291E31C56FF2F00AAB6FA /* Project object */;
+}
