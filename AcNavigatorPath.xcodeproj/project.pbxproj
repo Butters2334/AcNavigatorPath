@@ -12,6 +12,8 @@
 		A26291F51C56FF2F00AAB6FA /* AcNavigatorPath.xcscheme in Resources */ = {isa = PBXBuildFile; fileRef = A26291F41C56FF2F00AAB6FA /* AcNavigatorPath.xcscheme */; };
 		A26291F81C56FF2F00AAB6FA /* AcNavigatorPath.m in Sources */ = {isa = PBXBuildFile; fileRef = A26291F71C56FF2F00AAB6FA /* AcNavigatorPath.m */; };
 		A26291FB1C56FF2F00AAB6FA /* NSObject_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = A26291FA1C56FF2F00AAB6FA /* NSObject_Extension.m */; };
+		A262922E1C5704ED00AAB6FA /* XCFXcodeFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A26292251C5704ED00AAB6FA /* XCFXcodeFormatter.m */; };
+		A26292321C57058D00AAB6FA /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = A26292311C57058D00AAB6FA /* JRSwizzle.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,11 @@
 		A26291F91C56FF2F00AAB6FA /* NSObject_Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSObject_Extension.h; sourceTree = "<group>"; };
 		A26291FA1C56FF2F00AAB6FA /* NSObject_Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSObject_Extension.m; sourceTree = "<group>"; };
 		A26291FC1C56FF2F00AAB6FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A26292241C5704ED00AAB6FA /* XCFXcodeFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFXcodeFormatter.h; sourceTree = "<group>"; };
+		A26292251C5704ED00AAB6FA /* XCFXcodeFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCFXcodeFormatter.m; sourceTree = "<group>"; };
+		A26292261C5704ED00AAB6FA /* XCFXcodePrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFXcodePrivate.h; sourceTree = "<group>"; };
+		A26292301C57058D00AAB6FA /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
+		A26292311C57058D00AAB6FA /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +75,8 @@
 		A26291F21C56FF2F00AAB6FA /* AcNavigatorPath */ = {
 			isa = PBXGroup;
 			children = (
+				A262922F1C57058D00AAB6FA /* JRSwizzle */,
+				A26292031C57024000AAB6FA /* core */,
 				A26291F61C56FF2F00AAB6FA /* AcNavigatorPath.h */,
 				A26291F71C56FF2F00AAB6FA /* AcNavigatorPath.m */,
 				A26291F91C56FF2F00AAB6FA /* NSObject_Extension.h */,
@@ -84,6 +93,25 @@
 				A26291F41C56FF2F00AAB6FA /* AcNavigatorPath.xcscheme */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A26292031C57024000AAB6FA /* core */ = {
+			isa = PBXGroup;
+			children = (
+				A26292241C5704ED00AAB6FA /* XCFXcodeFormatter.h */,
+				A26292251C5704ED00AAB6FA /* XCFXcodeFormatter.m */,
+				A26292261C5704ED00AAB6FA /* XCFXcodePrivate.h */,
+			);
+			path = core;
+			sourceTree = "<group>";
+		};
+		A262922F1C57058D00AAB6FA /* JRSwizzle */ = {
+			isa = PBXGroup;
+			children = (
+				A26292301C57058D00AAB6FA /* JRSwizzle.h */,
+				A26292311C57058D00AAB6FA /* JRSwizzle.m */,
+			);
+			path = JRSwizzle;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,6 +183,8 @@
 			files = (
 				A26291F81C56FF2F00AAB6FA /* AcNavigatorPath.m in Sources */,
 				A26291FB1C56FF2F00AAB6FA /* NSObject_Extension.m in Sources */,
+				A262922E1C5704ED00AAB6FA /* XCFXcodeFormatter.m in Sources */,
+				A26292321C57058D00AAB6FA /* JRSwizzle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +313,7 @@
 				A26292011C56FF2F00AAB6FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

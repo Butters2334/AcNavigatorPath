@@ -7,6 +7,7 @@
 //
 
 #import "AcNavigatorPath.h"
+#import "XCFXcodeFormatter.h"
 
 @interface AcNavigatorPath()
 
@@ -43,8 +44,11 @@
     NSMenuItem *menuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
     if (menuItem) {
         [[menuItem submenu] addItem:[NSMenuItem separatorItem]];
-        NSMenuItem *actionMenuItem = [[NSMenuItem alloc] initWithTitle:@"Do Action" action:@selector(doMenuAction) keyEquivalent:@""];
-        //[actionMenuItem setKeyEquivalentModifierMask:NSAlphaShiftKeyMask | NSControlKeyMask];
+        unichar cf5                = NSF5FunctionKey;
+        NSString *f5               = [NSString stringWithCharacters:&cf5 length:1];
+        NSMenuItem *actionMenuItem = [[NSMenuItem alloc] initWithTitle:@"NavigatorPath" action:@selector(doMenuAction) keyEquivalent:f5];
+        //默认为NSCommandKeyMask,设置为0不使用组合键
+        [actionMenuItem setKeyEquivalentModifierMask:0];
         [actionMenuItem setTarget:self];
         [[menuItem submenu] addItem:actionMenuItem];
     }
@@ -53,9 +57,20 @@
 // Sample Action, for menu item:
 - (void)doMenuAction
 {
-    NSAlert *alert = [[NSAlert alloc] init];
-    [alert setMessageText:@"Hello, World"];
-    [alert runModal];
+    NSError *error;
+    //[XCFXcodeFormatter formatActiveFileWithError:&error];
+    //<IDESourceCodeDocument: 0x11bf8e8a0> URL: file:///Users/huajianma/Nut/Ancy/GitHub/XBookmark/XBookmark/XBookmark.m
+    
+    
+    [XCFXcodeFormatter selectFileWithcurrentSourceCode];
+    
+
+    if(error)
+    {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setMessageText:error.domain];
+        [alert runModal];
+    }
 }
 
 - (void)dealloc
