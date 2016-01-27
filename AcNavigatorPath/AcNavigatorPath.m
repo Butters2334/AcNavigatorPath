@@ -44,33 +44,32 @@
     NSMenuItem *menuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
     if (menuItem) {
         [[menuItem submenu] addItem:[NSMenuItem separatorItem]];
+        //
         unichar cf5                = NSF5FunctionKey;
         NSString *f5               = [NSString stringWithCharacters:&cf5 length:1];
-        NSMenuItem *actionMenuItem = [[NSMenuItem alloc] initWithTitle:@"NavigatorPath" action:@selector(doMenuAction) keyEquivalent:f5];
+        NSMenuItem *actionMenuItem = [[NSMenuItem alloc] initWithTitle:@"AcNavigatorPath" action:@selector(doMenuAction) keyEquivalent:f5];
         //默认为NSCommandKeyMask,设置为0不使用组合键
         [actionMenuItem setKeyEquivalentModifierMask:0];
         [actionMenuItem setTarget:self];
         [[menuItem submenu] addItem:actionMenuItem];
+        //
+        //unichar cf6                = NSF6FunctionKey;
+        //NSString *f6               = [NSString stringWithCharacters:&cf6 length:1];
+        //NSMenuItem *actionMenuItem2 = [[NSMenuItem alloc] initWithTitle:@"OpenFinderWithCode" action:@selector(doMenuAction2) keyEquivalent:f6];
+        ////默认为NSCommandKeyMask,设置为0不使用组合键
+        //[actionMenuItem2 setKeyEquivalentModifierMask:0];
+        //[actionMenuItem2 setTarget:self];
+        //[[menuItem submenu] addItem:actionMenuItem2];
     }
 }
 
-// Sample Action, for menu item:
 - (void)doMenuAction
 {
-    NSError *error;
-    //[XCFXcodeFormatter formatActiveFileWithError:&error];
-    //<IDESourceCodeDocument: 0x11bf8e8a0> URL: file:///Users/huajianma/Nut/Ancy/GitHub/XBookmark/XBookmark/XBookmark.m
-    
-    
-    [XCFXcodeFormatter selectFileWithcurrentSourceCode];
-    
-
-    if(error)
-    {
-        NSAlert *alert = [[NSAlert alloc] init];
-        [alert setMessageText:error.domain];
-        [alert runModal];
-    }
+    [XCFXcodeFormatter selectFileWithCurrentSourceCode];
+}
+- (void)doMenuAction2
+{
+    [XCFXcodeFormatter openFinderWithCurrentSourceCode];
 }
 
 - (void)dealloc

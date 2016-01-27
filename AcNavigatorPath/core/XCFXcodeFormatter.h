@@ -10,6 +10,10 @@
 /**
  *   选中对应当前代码页的类
  */
-+(void)selectFileWithcurrentSourceCode;
++(void)selectFileWithCurrentSourceCode;
 
+/**
+ *  打开当前编辑代码在finder中的位置
+ */
++(void)openFinderWithCurrentSourceCode;
 @end

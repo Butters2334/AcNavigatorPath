@@ -30,11 +30,19 @@
 
 @implementation XCFXcodeFormatter
 
+/**
+ *  打开当前编辑代码在finder中的位置
+ */
++(void)openFinderWithCurrentSourceCode
+{
+    NSURL *sourceCodePathURL = [self currentSourceCodePathURL];
+    NSString *sourceCodePath = sourceCodePathURL.absoluteString.lowercaseString;
+    
+}
 
-+(void)selectFileWithcurrentSourceCode
++(void)selectFileWithCurrentSourceCode
 {
     //当前编辑框
-    //IDESourceCodeDocument *document = [XCFXcodeFormatter currentSourceCodeDocument];
     NSURL *sourceCodePathURL = [self currentSourceCodePathURL];
     NSString *sourceCodePath = sourceCodePathURL.absoluteString.lowercaseString;
     //处理侧栏层级
@@ -43,11 +51,11 @@
     {
         IDEWorkspaceWindowController *workspaceController = currentWindowController;
         IDEWorkspaceTabController *workspaceTabController = [workspaceController activeWorkspaceTabController];
-        IDENavigatorArea *navigatorArea = [workspaceTabController navigatorArea];
-        NSArrayController *arrayController = [navigatorArea extensionsController];
+        IDENavigatorArea *navigatorArea                   = [workspaceTabController navigatorArea];
+        NSArrayController *arrayController                = [navigatorArea extensionsController];
         for(NSInteger index=0;index<[arrayController.arrangedObjects count];index++)
         {
-            DVTChoice *choice = arrayController.arrangedObjects[index];
+            DVTChoice *choice       = arrayController.arrangedObjects[index];
             DVTExtension *extension = [choice representedObject];
             //找到路径栏
             if([extension.identifier isEqualToString:@"Xcode.IDEKit.Navigator.Structure"])
@@ -61,19 +69,25 @@
         if ([currentNavigator isKindOfClass:NSClassFromString(@"IDEStructureNavigator")])
         {
             IDEStructureNavigator *structureNavigator = currentNavigator;
-            NSSet *set = [structureNavigator mutableExpandedItems];
+            NSSet *set     = [structureNavigator mutableExpandedItems];
             NSArray *array = [set allObjects];
             //暂时没搞清楚为什么会有多个group(排除项目文件外还有两个)
-            for(IDEGroupNavigableItem *rootGroup in array)
+            for(IDEContainerFileReferenceNavigableItem *rootGroup in array)
             {
-                if([rootGroup isKindOfClass:NSClassFromString(@"IDEGroupNavigableItem")])
+                if([rootGroup isKindOfClass:NSClassFromString(@"IDEContainerFileReferenceNavigableItem")])
                 {
-                    for(IDENavigableItem *item in [rootGroup childItems])
+                    IDEFileReference *fileRference = [rootGroup representedObject];
+                    //直接获取项目级别
+                    if([fileRference.path hasSuffix:@".xcodeproj"])
                     {
-                        if([self recursivlyNavigableItem:item searchFilePath:sourceCodePath])
+                        for(IDENavigableItem *item in [rootGroup childItems])
                         {
-                            [self openFolderWithGroupNavigableItem:rootGroup];
-                            return ;
+                            if([self recursivlyNavigableItem:item searchFilePath:sourceCodePath])
+                            {
+                                //.xcodeproj级别,root级别打不开
+                                //[self openFolderWithGroupNavigableItem:rootGroup];
+                                return ;
+                            }
                         }
                     }
                 }
@@ -131,8 +145,8 @@
     if ([currentWindowController isKindOfClass:NSClassFromString(@"IDEWorkspaceWindowController")]) {
         IDEWorkspaceWindowController *workspaceController = currentWindowController;
         IDEWorkspaceTabController *workspaceTabController = [workspaceController activeWorkspaceTabController];
-        IDENavigatorArea *navigatorArea = [workspaceTabController navigatorArea];
-        NSArrayController *arrayController = [navigatorArea extensionsController];
+        IDENavigatorArea *navigatorArea                   = [workspaceTabController navigatorArea];
+        NSArrayController *arrayController                = [navigatorArea extensionsController];
         for(NSInteger index=0;index<[arrayController.arrangedObjects count];index++)
         {
             DVTChoice *choice = arrayController.arrangedObjects[index];
@@ -148,7 +162,7 @@
         id currentNavigator = [navigatorArea currentNavigator];
         if ([currentNavigator isKindOfClass:NSClassFromString(@"IDEStructureNavigator")]) {
             IDEStructureNavigator *structureNavigator = currentNavigator;
-            structureNavigator.selectedObjects = selectedObjects;
+            structureNavigator.selectedObjects        = selectedObjects;
         }
     }
 }
@@ -161,8 +175,8 @@
 	
 	if ([currentWindowController isKindOfClass:NSClassFromString(@"IDEWorkspaceWindowController")]) {
 		IDEWorkspaceWindowController *workspaceController = (IDEWorkspaceWindowController *)currentWindowController;
-		IDEEditorArea *editorArea = [workspaceController editorArea];
-		IDEEditorContext *editorContext = [editorArea lastActiveEditorContext];
+        IDEEditorArea *editorArea       = [workspaceController editorArea];
+        IDEEditorContext *editorContext = [editorArea lastActiveEditorContext];
 		return [editorContext editor];
 	}
 	return nil;

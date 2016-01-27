@@ -34,6 +34,7 @@
 @end
 
 @interface IDEContainerItem : NSObject
+@property (readonly) NSString *path;
 @property (readonly) DVTFilePath *resolvedFilePath;
 @property BOOL usesTabs;
 @end
@@ -43,7 +44,6 @@
 @end
 
 @interface IDEFileReference : IDEContainerItem
-
 @end
 
 @interface IDENavigableItem : NSObject
@@ -134,3 +134,10 @@
 @interface IDEPlistEditor : NSObject
 @property NSDocument *document;
 @end
+
+@interface IDEFileReferenceNavigableItem : IDEFileNavigableItem
+@end
+@interface IDEContainerFileReferenceNavigableItem : IDEFileReferenceNavigableItem
+@property (readonly) IDEFileReference *representedObject;
+@end
+
