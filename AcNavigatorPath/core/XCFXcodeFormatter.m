@@ -74,11 +74,11 @@
             //暂时没搞清楚为什么会有多个group(排除项目文件外还有两个)
             for(IDEContainerFileReferenceNavigableItem *rootGroup in array)
             {
-                if([rootGroup isKindOfClass:NSClassFromString(@"IDEContainerFileReferenceNavigableItem")])
+                //if([rootGroup isKindOfClass:NSClassFromString(@"IDEContainerFileReferenceNavigableItem")])
                 {
-                    IDEFileReference *fileRference = [rootGroup representedObject];
+                    //IDEFileReference *fileRference = [rootGroup representedObject];
                     //直接获取项目级别
-                    if([fileRference.path hasSuffix:@".xcodeproj"])
+                    //if([fileRference.path hasSuffix:@".xcodeproj"])
                     {
                         for(IDENavigableItem *item in [rootGroup childItems])
                         {
