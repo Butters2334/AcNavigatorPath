@@ -36,8 +36,28 @@
 +(void)openFinderWithCurrentSourceCode
 {
     NSURL *sourceCodePathURL = [self currentSourceCodePathURL];
-    NSString *sourceCodePath = sourceCodePathURL.absoluteString.lowercaseString;
-    
+    NSString *sourceCodePath = sourceCodePathURL.path;
+    if(sourceCodePath.length==0)
+    {
+        return;
+    }
+    //选中的不是文件夹时,剪出文件夹路径(编辑页面肯定不是文件夹)
+    if(!sourceCodePathURL.hasDirectoryPath)
+    {
+        NSArray *pathList = [sourceCodePath componentsSeparatedByString:@"/"];
+        NSInteger lastPathLength = [pathList.lastObject length]+1;
+        sourceCodePath=[sourceCodePath substringToIndex:sourceCodePath.length-lastPathLength];
+    }
+    if(sourceCodePath)
+    {
+        NSTask *task        = [NSTask new];
+        task.launchPath     = @"/usr/bin/open";
+        task.arguments      = @[sourceCodePath];
+        task.standardOutput = [NSPipe new];
+        task.standardError  = [NSPipe new];
+
+        [task launch];
+    }
 }
 
 +(void)selectFileWithCurrentSourceCode

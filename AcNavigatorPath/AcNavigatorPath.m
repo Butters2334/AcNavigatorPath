@@ -53,13 +53,11 @@
         [actionMenuItem setTarget:self];
         [[menuItem submenu] addItem:actionMenuItem];
         //
-        //unichar cf6                = NSF6FunctionKey;
-        //NSString *f6               = [NSString stringWithCharacters:&cf6 length:1];
-        //NSMenuItem *actionMenuItem2 = [[NSMenuItem alloc] initWithTitle:@"OpenFinderWithCode" action:@selector(doMenuAction2) keyEquivalent:f6];
-        ////默认为NSCommandKeyMask,设置为0不使用组合键
-        //[actionMenuItem2 setKeyEquivalentModifierMask:0];
-        //[actionMenuItem2 setTarget:self];
-        //[[menuItem submenu] addItem:actionMenuItem2];
+        NSMenuItem *actionMenuItem2 = [[NSMenuItem alloc] initWithTitle:@"OpenFinderWithCode" action:@selector(doMenuAction2) keyEquivalent:f5];
+        //默认为NSCommandKeyMask,设置为0不使用组合键
+        [actionMenuItem2 setKeyEquivalentModifierMask:NSControlKeyMask];
+        [actionMenuItem2 setTarget:self];
+        [[menuItem submenu] addItem:actionMenuItem2];
     }
 }
 
