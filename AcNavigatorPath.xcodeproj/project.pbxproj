@@ -7,15 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A23894791CA278DF00E8869E /* ACLogIDEConsoleArea.m in Sources */ = {isa = PBXBuildFile; fileRef = A23894781CA278DF00E8869E /* ACLogIDEConsoleArea.m */; };
+		A238947C1CA2796A00E8869E /* MethodSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = A238947B1CA2796A00E8869E /* MethodSwizzle.m */; };
 		A26291EF1C56FF2F00AAB6FA /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A26291EE1C56FF2F00AAB6FA /* AppKit.framework */; };
 		A26291F11C56FF2F00AAB6FA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A26291F01C56FF2F00AAB6FA /* Foundation.framework */; };
 		A26291F51C56FF2F00AAB6FA /* AcNavigatorPath.xcscheme in Resources */ = {isa = PBXBuildFile; fileRef = A26291F41C56FF2F00AAB6FA /* AcNavigatorPath.xcscheme */; };
 		A26291F81C56FF2F00AAB6FA /* AcNavigatorPath.m in Sources */ = {isa = PBXBuildFile; fileRef = A26291F71C56FF2F00AAB6FA /* AcNavigatorPath.m */; };
 		A26291FB1C56FF2F00AAB6FA /* NSObject_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = A26291FA1C56FF2F00AAB6FA /* NSObject_Extension.m */; };
-		A262922E1C5704ED00AAB6FA /* XCFXcodeFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A26292251C5704ED00AAB6FA /* XCFXcodeFormatter.m */; };
+		A262922E1C5704ED00AAB6FA /* ACXcodeFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A26292251C5704ED00AAB6FA /* ACXcodeFormatter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A23894771CA278DF00E8869E /* ACLogIDEConsoleArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLogIDEConsoleArea.h; sourceTree = "<group>"; };
+		A23894781CA278DF00E8869E /* ACLogIDEConsoleArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLogIDEConsoleArea.m; sourceTree = "<group>"; };
+		A238947A1CA2796A00E8869E /* MethodSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MethodSwizzle.h; sourceTree = "<group>"; };
+		A238947B1CA2796A00E8869E /* MethodSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MethodSwizzle.m; sourceTree = "<group>"; };
 		A26291EB1C56FF2F00AAB6FA /* AcNavigatorPath.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AcNavigatorPath.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		A26291EE1C56FF2F00AAB6FA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		A26291F01C56FF2F00AAB6FA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -25,9 +31,9 @@
 		A26291F91C56FF2F00AAB6FA /* NSObject_Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSObject_Extension.h; sourceTree = "<group>"; };
 		A26291FA1C56FF2F00AAB6FA /* NSObject_Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSObject_Extension.m; sourceTree = "<group>"; };
 		A26291FC1C56FF2F00AAB6FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A26292241C5704ED00AAB6FA /* XCFXcodeFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFXcodeFormatter.h; sourceTree = "<group>"; };
-		A26292251C5704ED00AAB6FA /* XCFXcodeFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCFXcodeFormatter.m; sourceTree = "<group>"; };
-		A26292261C5704ED00AAB6FA /* XCFXcodePrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFXcodePrivate.h; sourceTree = "<group>"; };
+		A26292241C5704ED00AAB6FA /* ACXcodeFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACXcodeFormatter.h; sourceTree = "<group>"; };
+		A26292251C5704ED00AAB6FA /* ACXcodeFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACXcodeFormatter.m; sourceTree = "<group>"; };
+		A26292261C5704ED00AAB6FA /* ACXcodePrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACXcodePrivate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,9 +100,13 @@
 		A26292031C57024000AAB6FA /* core */ = {
 			isa = PBXGroup;
 			children = (
-				A26292241C5704ED00AAB6FA /* XCFXcodeFormatter.h */,
-				A26292251C5704ED00AAB6FA /* XCFXcodeFormatter.m */,
-				A26292261C5704ED00AAB6FA /* XCFXcodePrivate.h */,
+				A238947A1CA2796A00E8869E /* MethodSwizzle.h */,
+				A238947B1CA2796A00E8869E /* MethodSwizzle.m */,
+				A26292241C5704ED00AAB6FA /* ACXcodeFormatter.h */,
+				A26292251C5704ED00AAB6FA /* ACXcodeFormatter.m */,
+				A26292261C5704ED00AAB6FA /* ACXcodePrivate.h */,
+				A23894771CA278DF00E8869E /* ACLogIDEConsoleArea.h */,
+				A23894781CA278DF00E8869E /* ACLogIDEConsoleArea.m */,
 			);
 			path = core;
 			sourceTree = "<group>";
@@ -168,9 +178,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A238947C1CA2796A00E8869E /* MethodSwizzle.m in Sources */,
+				A23894791CA278DF00E8869E /* ACLogIDEConsoleArea.m in Sources */,
 				A26291F81C56FF2F00AAB6FA /* AcNavigatorPath.m in Sources */,
 				A26291FB1C56FF2F00AAB6FA /* NSObject_Extension.m in Sources */,
-				A262922E1C5704ED00AAB6FA /* XCFXcodeFormatter.m in Sources */,
+				A262922E1C5704ED00AAB6FA /* ACXcodeFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

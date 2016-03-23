@@ -5,7 +5,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface XCFXcodeFormatter : NSObject
+@interface ACXcodeFormatter : NSObject
 
 /**
  *   选中对应当前代码页的类
@@ -16,4 +16,12 @@
  *  打开当前编辑代码在finder中的位置
  */
 +(void)openFinderWithCurrentSourceCode;
+
+/**
+ *  打开当前模拟器显示的VC
+ */
++(void)openCurrentViewController;
+
++(void)saveCurrentViewControllerClass:(NSString *)vcClass;
++(NSString *)currentViewControllerName;
 @end

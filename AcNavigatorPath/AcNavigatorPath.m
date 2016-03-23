@@ -7,7 +7,7 @@
 //
 
 #import "AcNavigatorPath.h"
-#import "XCFXcodeFormatter.h"
+#import "ACXcodeFormatter.h"
 
 @interface AcNavigatorPath()
 
@@ -47,7 +47,7 @@
         //
         unichar cf5                = NSF5FunctionKey;
         NSString *f5               = [NSString stringWithCharacters:&cf5 length:1];
-        NSMenuItem *actionMenuItem = [[NSMenuItem alloc] initWithTitle:@"AcNavigatorPath" action:@selector(doMenuAction) keyEquivalent:f5];
+        NSMenuItem *actionMenuItem = [[NSMenuItem alloc] initWithTitle:@"打开当前ViewController.m" action:@selector(doMenuAction) keyEquivalent:f5];
         //默认为NSCommandKeyMask,设置为0不使用组合键
         [actionMenuItem setKeyEquivalentModifierMask:0];
         [actionMenuItem setTarget:self];
@@ -59,15 +59,44 @@
         [actionMenuItem2 setTarget:self];
         [[menuItem submenu] addItem:actionMenuItem2];
     }
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                            selector:@selector(consoleDidChange:)
+                                                name:NSTextDidEndEditingNotification
+                                              object:nil];
 }
-
+-(void)consoleDidChange:(NSNotification *)notification
+{
+    if([notification.object isKindOfClass:NSClassFromString(@"IDEConsoleTextView")])
+    {
+        NSString *string    = [[[notification.object layoutManager]firstTextView]string];
+        NSArray *listString = [string componentsSeparatedByString:@"\n"];
+        if(listString.count<=2)return;
+        NSString *lastObject = listString[listString.count-2];
+        //NSLog(@"notification  - %@",latObject);
+        if([lastObject rangeOfString:@"AcNavigationFilePath"].location != NSNotFound)
+        {
+            NSArray *pathComm = [lastObject componentsSeparatedByString:@"AcNavigationFilePath - "];
+            if(pathComm.count>=2)
+            {
+                [ACXcodeFormatter saveCurrentViewControllerClass:pathComm[1]];
+            }
+        }
+    }
+}
 - (void)doMenuAction
 {
-    [XCFXcodeFormatter selectFileWithCurrentSourceCode];
+    [ACXcodeFormatter openCurrentViewController];
 }
+//打开当前编辑框在路径栏的位置
+//- (void)doMenuAction
+//{
+//    [XCFXcodeFormatter selectFileWithCurrentSourceCode];
+//}
+//打开当前编辑框文件的实际路径
 - (void)doMenuAction2
 {
-    [XCFXcodeFormatter openFinderWithCurrentSourceCode];
+    [ACXcodeFormatter openFinderWithCurrentSourceCode];
 }
 
 - (void)dealloc

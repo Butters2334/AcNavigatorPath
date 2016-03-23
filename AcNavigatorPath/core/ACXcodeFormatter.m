@@ -3,8 +3,8 @@
 // Copyright (c) 2014 Pragmatic Code. All rights reserved.
 //
 
-#import "XCFXcodeFormatter.h"
-#import "XCFXcodePrivate.h"
+#import "ACXcodeFormatter.h"
+#import "ACXcodePrivate.h"
 #import <objc/runtime.h>
 @implementation NSObject (AllProerty)
 - (NSString *)allProperty
@@ -28,7 +28,48 @@
 @end
 
 
-@implementation XCFXcodeFormatter
+@implementation ACXcodeFormatter
+
+#pragma mark - Helpers
+
++ (id)currentEditor
+{
+    NSWindowController *currentWindowController = [[NSApp keyWindow] windowController];
+    
+    if ([currentWindowController isKindOfClass:NSClassFromString(@"IDEWorkspaceWindowController")]) {
+        IDEWorkspaceWindowController *workspaceController = (IDEWorkspaceWindowController *)currentWindowController;
+        IDEEditorArea *editorArea       = [workspaceController editorArea];
+        IDEEditorContext *editorContext = [editorArea lastActiveEditorContext];
+        return [editorContext editor];
+    }
+    return nil;
+}
++(NSURL *)currentSourceCodePathURL
+{
+    IDESourceCodeEditor *editor = [ACXcodeFormatter currentEditor];
+    //常规代码编辑框
+    if ([editor isKindOfClass:NSClassFromString(@"IDESourceCodeEditor")])
+    {
+        return editor.sourceCodeDocument.fileURL;
+    }
+    //开启代码对比工具
+    if ([editor isKindOfClass:NSClassFromString(@"IDESourceCodeComparisonEditor")])
+    {
+        IDESourceCodeDocument *document = ((IDESourceCodeComparisonEditor *)editor).primaryDocument;
+        if ([document isKindOfClass:NSClassFromString(@"IDESourceCodeDocument")])
+        {
+            return document.fileURL;
+        }
+    }
+    //plist
+    if([editor isKindOfClass:NSClassFromString(@"IDEPlistEditor")])
+    {
+        return ((IDEPlistEditor *)editor).document.fileURL;
+    }
+    
+    return nil;
+}
+
 
 /**
  *  打开当前编辑代码在finder中的位置
@@ -48,16 +89,38 @@
         NSInteger lastPathLength = [pathList.lastObject length]+1;
         sourceCodePath=[sourceCodePath substringToIndex:sourceCodePath.length-lastPathLength];
     }
-    if(sourceCodePath)
-    {
-        NSTask *task        = [NSTask new];
-        task.launchPath     = @"/usr/bin/open";
-        task.arguments      = @[sourceCodePath];
-        task.standardOutput = [NSPipe new];
-        task.standardError  = [NSPipe new];
+    [self openPath:sourceCodePath];
+}
+/**
+ *  打开当前模拟器显示的VC
+ */
++(void)openCurrentViewController
+{
+    NSString *sourceCodePath = [self currentViewControllerName];
+    [self openFileWithPath:sourceCodePath];
+}
 
-        [task launch];
++(NSObject *)shareTool
+{
+    static dispatch_once_t onceToken;
+    static NSObject *shareTool=nil;
+    dispatch_once(&onceToken, ^{
+        shareTool = [NSObject new];
+    });
+    return shareTool;
+}
++(void)saveCurrentViewControllerClass:(NSString *)vcClass
+{
+    objc_setAssociatedObject([self shareTool], "currentViewControllerClass", vcClass, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
++(NSString *)currentViewControllerName
+{
+    NSString *vcName = objc_getAssociatedObject([self shareTool],"currentViewControllerClass");
+    if(![vcName hasSuffix:@".m"])
+    {
+        vcName = [vcName stringByAppendingString:@".m"];
     }
+    return vcName;
 }
 
 +(void)selectFileWithCurrentSourceCode
@@ -65,9 +128,19 @@
     //当前编辑框
     NSURL *sourceCodePathURL = [self currentSourceCodePathURL];
     NSString *sourceCodePath = sourceCodePathURL.absoluteString.lowercaseString;
+    [self openFileWithPath:sourceCodePath];
+}
+
+/**
+ *  打开指定文件路径下的文件,同时选中侧边栏
+ *
+ *  @param filePath 实际路径或文件名(文件名需要在侧边栏遍历找地址)
+ */
++(void)openFileWithPath:(NSString *)filePath
+{
     //处理侧栏层级
     id currentWindowController = [[NSApp keyWindow] windowController];
-    if (sourceCodePath && [currentWindowController isKindOfClass:NSClassFromString(@"IDEWorkspaceWindowController")])
+    if (filePath && [currentWindowController isKindOfClass:NSClassFromString(@"IDEWorkspaceWindowController")])
     {
         IDEWorkspaceWindowController *workspaceController = currentWindowController;
         IDEWorkspaceTabController *workspaceTabController = [workspaceController activeWorkspaceTabController];
@@ -102,7 +175,7 @@
                     {
                         for(IDENavigableItem *item in [rootGroup childItems])
                         {
-                            if([self recursivlyNavigableItem:item searchFilePath:sourceCodePath])
+                            if([self recursivlyNavigableItem:item searchFilePath:filePath])
                             {
                                 //.xcodeproj级别,root级别打不开
                                 //[self openFolderWithGroupNavigableItem:rootGroup];
@@ -137,10 +210,12 @@
     }else if ([navigableItem isKindOfClass:NSClassFromString(@"IDEFileNavigableItem")]){
         IDEFileNavigableItem *fileNavigableItem = (IDEFileNavigableItem *)navigableItem;
         NSString *itemFilePath = fileNavigableItem.fileURL.absoluteString.lowercaseString;
-        if([sourceCodePath isEqualToString:itemFilePath])
+        if([itemFilePath rangeOfString:sourceCodePath.lowercaseString].location != NSNotFound)
         {
             //NSLog(@"选中 -  %@",fileNavigableItem);
+            [self openPath:itemFilePath];
             [self setStrureNavigatorSelectedObjects:@[fileNavigableItem]];
+            //
             return YES;
         }
     }
@@ -158,7 +233,9 @@
     //暂时找不到打开侧边栏文件夹的办法
     NSLog(@"%@ - %@",NSStringFromSelector(_cmd),groupNavigableItem);
 }
-
+/**
+ *  选中侧边栏
+ */
 +(void)setStrureNavigatorSelectedObjects:(NSArray *)selectedObjects
 {
     id currentWindowController = [[NSApp keyWindow] windowController];
@@ -187,44 +264,21 @@
     }
 }
 
-#pragma mark - Helpers
-
-+ (id)currentEditor
+/**
+ *  打开指定路径,文件夹使用Finder打开,文件使用默认应用打开(.m文件默认使用xcode)
+ */
++(void)openPath:(NSString *)sourceCodePath
 {
-	NSWindowController *currentWindowController = [[NSApp keyWindow] windowController];
-	
-	if ([currentWindowController isKindOfClass:NSClassFromString(@"IDEWorkspaceWindowController")]) {
-		IDEWorkspaceWindowController *workspaceController = (IDEWorkspaceWindowController *)currentWindowController;
-        IDEEditorArea *editorArea       = [workspaceController editorArea];
-        IDEEditorContext *editorContext = [editorArea lastActiveEditorContext];
-		return [editorContext editor];
-	}
-	return nil;
-}
-+(NSURL *)currentSourceCodePathURL
-{
-    IDESourceCodeEditor *editor = [XCFXcodeFormatter currentEditor];
-    //常规代码编辑框
-    if ([editor isKindOfClass:NSClassFromString(@"IDESourceCodeEditor")])
+    if(sourceCodePath)
     {
-        return editor.sourceCodeDocument.fileURL;
+        NSTask *task        = [NSTask new];
+        task.launchPath     = @"/usr/bin/open";
+        task.arguments      = @[sourceCodePath];
+        task.standardOutput = [NSPipe new];
+        task.standardError  = [NSPipe new];
+        
+        [task launch];
     }
-    //开启代码对比工具
-    if ([editor isKindOfClass:NSClassFromString(@"IDESourceCodeComparisonEditor")])
-    {
-        IDESourceCodeDocument *document = ((IDESourceCodeComparisonEditor *)editor).primaryDocument;
-        if ([document isKindOfClass:NSClassFromString(@"IDESourceCodeDocument")])
-        {
-            return document.fileURL;
-        }
-    }
-    //plist
-    if([editor isKindOfClass:NSClassFromString(@"IDEPlistEditor")])
-    {
-        return ((IDEPlistEditor *)editor).document.fileURL;
-    }
-    
-    return nil;
 }
 
 @end
